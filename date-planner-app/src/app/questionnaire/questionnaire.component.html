@@ -1,0 +1,40 @@
+<div>
+    <div class="introQuestions">
+        <div>
+            <h2>
+                Is your date male or female?
+            </h2>
+        </div>
+        <div style="display: inline-flex;">
+            <div style="margin-right: 15px;">
+                <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>male</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+                    <mat-icon>female</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hobbyQuestions">
+        <form class="example-form">
+            <mat-form-field>
+              <mat-label>Assignee</mat-label>
+              <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                @for (option of filteredOptions | async; track option) {
+                  <mat-option [value]="option">{{option.name}}</mat-option>
+                }
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+    </div>
+
+    <div class="hobbyQuestions">
+
+    </div>
+</div>
