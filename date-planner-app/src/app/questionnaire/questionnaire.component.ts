@@ -10,9 +10,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {AsyncPipe} from '@angular/common';
+import {MatSelectModule} from '@angular/material/select';
 
 export interface Hobby {
   name: string;
+}
+
+interface Budget {
+  value: string;
+  viewValue: string;
 }
 
 @Component({
@@ -29,6 +35,7 @@ export interface Hobby {
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    MatSelectModule
   ],
   templateUrl: './questionnaire.component.html',
   styleUrl: './questionnaire.component.scss'
@@ -36,17 +43,17 @@ export interface Hobby {
 export class QuestionnaireComponent implements OnInit{
   myControl = new FormControl<string | Hobby>('');
   options: Hobby[] = [
-    {name: 'Indoors'},
+    {name: 'Arts'},
+    {name: 'Archery'},
+    {name: 'Bar-Hopping'},
+    {name: 'Clubbing'},
+    {name: 'Cooking'},
     {name: 'Outdoors'},
     {name: 'Sports'},
-    {name: 'Clubbing'},
-    {name: 'Bar-Hopping'},
-    {name: 'Arts'},
     {name: 'Movies'},
     {name: 'Learning'},
-    {name: 'Cooking'},
-    {name: 'Archery'},
-    {name: 'Sightseeing'}
+    {name: 'Sightseeing'},
+    {name: 'Other'}
   ];
   filteredOptions!: Observable<Hobby[]>;
 
@@ -69,4 +76,12 @@ export class QuestionnaireComponent implements OnInit{
 
     return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
+
+  budget: Budget[] = [
+    {value: 'free-0', viewValue: 'Free'},
+    {value: 'low-1', viewValue: 'Low (Under $20)'},
+    {value: 'medium-2', viewValue: 'Medium ($20 - $50)'},
+    {value: 'high-3', viewValue: 'High ($50 - $100)'},
+    {value: 'bougie-3', viewValue: 'Bougie (Over $100)'}
+  ];
 }
